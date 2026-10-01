@@ -45,7 +45,7 @@ For production, set these exact Vercel variables before redeploying:
 - Backend project: `FRONTEND_URL=https://YOUR-FRONTEND.vercel.app`
 - Backend project: `BACKEND_URL=https://YOUR-BACKEND.vercel.app`
 
-Do not leave `VITE_API_URL` as `http://localhost:4000/api` in the deployed frontend. Do not open the backend domain as the website: the backend root is an API status response, while the user-facing website is the frontend domain. The frontend includes a Vercel SPA rewrite so `/admin/login` and `/verify/:certificateId` also work on direct page loads.
+Do not leave `VITE_API_URL` as `http://localhost:4000/api` in the deployed frontend. The backend root redirects to `FRONTEND_URL` when that variable is a deployed URL; the user-facing website is still the frontend domain. The frontend includes a Vercel SPA rewrite so `/admin/login` and `/verify/:certificateId` also work on direct page loads.
 
 The current PDF template deliberately uses replaceable text and vector styling. Logo, signature, and event-specific template assets should be added to a storage-backed event branding model before production branding is finalized; the API does not rely on local persistent files.
 
