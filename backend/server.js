@@ -20,6 +20,7 @@ app.use(cors({ origin: (origin, callback) => callback(null, !origin || allowedOr
 app.use(express.json({ limit: '100kb' }));
 app.use('/assets', express.static(path.resolve(__dirname, 'assets'), { maxAge: '1h' }));
 app.use(morgan('combined'));
+app.get('/', (_req, res) => res.json({ service: 'Esports E-Certificate API', status: 'running', frontend: process.env.FRONTEND_URL || 'http://localhost:5173', health: '/api/health' }));
 app.use('/api/certificates/request', rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: true, legacyHeaders: false }));
 app.get('/api/health', (_req, res) => res.json({ success: true, service: 'esports-certificate-api' }));
 app.use('/api/certificates', certificateRoutes);

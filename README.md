@@ -17,6 +17,8 @@ A MongoDB-backed certificate portal for authorized esports participants. The bac
 4. Start the frontend in another terminal: `cd frontend && npm install && npm run dev`.
 5. Open the Vite URL shown in the terminal. Set `frontend/.env` with `VITE_API_URL=http://localhost:4000/api` when the API is not on its default URL.
 
+Open the website at `http://localhost:5173` or `http://localhost:5174` if Vite selects the next port. `http://localhost:4000` is the backend API, not the website; its root response is only an API status message. Admin sign-in is at `/admin/login` on the frontend URL.
+
 MongoDB Atlas must allow the API deployment's outbound IP range and contain a database user with access to the configured database. The server recalculates `certificateEligible` from attendance on every participant save/import and checks it again before issuing a certificate.
 
 ## Import format
@@ -36,6 +38,14 @@ Use `backend/data/sample-participants.csv` as a starting point. Required columns
 ## Vercel deployment
 
 Deploy `frontend/` as one Vercel project with `VITE_API_URL` pointing at the deployed backend. Deploy `backend/` as a second Vercel project; its `vercel.json` maps all requests to the serverless Express handler. Configure `MONGODB_URI`, `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `FRONTEND_URL`, and `BACKEND_URL` in the backend project. Configure `VITE_API_URL` in the frontend project.
+
+For production, set these exact Vercel variables before redeploying:
+
+- Frontend project: `VITE_API_URL=https://YOUR-BACKEND.vercel.app/api`
+- Backend project: `FRONTEND_URL=https://YOUR-FRONTEND.vercel.app`
+- Backend project: `BACKEND_URL=https://YOUR-BACKEND.vercel.app`
+
+Do not leave `VITE_API_URL` as `http://localhost:4000/api` in the deployed frontend. Do not open the backend domain as the website: the backend root is an API status response, while the user-facing website is the frontend domain. The frontend includes a Vercel SPA rewrite so `/admin/login` and `/verify/:certificateId` also work on direct page loads.
 
 The current PDF template deliberately uses replaceable text and vector styling. Logo, signature, and event-specific template assets should be added to a storage-backed event branding model before production branding is finalized; the API does not rely on local persistent files.
 
