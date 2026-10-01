@@ -1,0 +1,5 @@
+ID,Name,Event,Event Date,Attendance,Result,Email,Team,Game
+KL2026CS1234,Akhil Kumar,BGMI Championship 2026,2026-09-25,YES,WINNER,akhil@example.com,Team KL,BGMI
+KL2026CS5678,Rahul Kumar,BGMI Championship 2026,2026-09-25,YES,RUNNER_UP,rahul@example.com,Team Nova,BGMI
+KL2026CS7890,Sai Reddy,BGMI Championship 2026,2026-09-25,YES,PARTICIPATION,sai@example.com,Team KL,BGMI
+KL2026CS9999,Ravi Das,BGMI Championship 2026,2026-09-25,NO,PARTICIPATION,ravi@example.com,Team Zero,BGMI
