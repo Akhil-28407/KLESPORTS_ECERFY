@@ -23,7 +23,7 @@ app.use(morgan('combined'));
 app.get('/', (_req, res) => {
   const frontendUrl = process.env.FRONTEND_URL || '';
   if (frontendUrl && !frontendUrl.includes('localhost')) return res.redirect(frontendUrl);
-  return res.json({ service: 'Esports E-Certificate API', status: 'running', message: 'Open the frontend URL for the website.', frontend: frontendUrl || 'http://localhost:5173', health: '/api/health' });
+  return res.json({ service: 'Esports E-Certificate API', status: 'running', message: 'Set FRONTEND_URL to your deployed frontend URL.', frontend: frontendUrl || (process.env.VERCEL ? 'NOT_CONFIGURED' : 'http://localhost:5173'), health: '/api/health' });
 });
 app.use('/api/certificates/request', rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: true, legacyHeaders: false }));
 app.get('/api/health', (_req, res) => res.json({ success: true, service: 'esports-certificate-api' }));

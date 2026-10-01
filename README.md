@@ -41,9 +41,9 @@ Deploy `frontend/` as one Vercel project with `VITE_API_URL` pointing at the dep
 
 For production, set these exact Vercel variables before redeploying:
 
-- Frontend project: `VITE_API_URL=https://YOUR-BACKEND.vercel.app/api`
-- Backend project: `FRONTEND_URL=https://YOUR-FRONTEND.vercel.app`
-- Backend project: `BACKEND_URL=https://YOUR-BACKEND.vercel.app`
+- Frontend project: `VITE_API_URL=https://klesports-ecerfy.vercel.app/api`
+- Backend project: `FRONTEND_URL=https://klesports-ecerfy-3ft3.vercel.app`
+- Backend project: `BACKEND_URL=https://klesports-ecerfy.vercel.app`
 
 Do not leave `VITE_API_URL` as `http://localhost:4000/api` in the deployed frontend. The backend root redirects to `FRONTEND_URL` when that variable is a deployed URL; the user-facing website is still the frontend domain. The frontend includes a Vercel SPA rewrite so `/admin/login` and `/verify/:certificateId` also work on direct page loads.
 
